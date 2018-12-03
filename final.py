@@ -2,32 +2,22 @@
 # M. Mariscal, C. Piwarski, W. Robleh
 
 
+from javax.swing import JFrame, JButton
+from java.awt import GridLayout
 
-board = [0,1,2,
-         3,4,5, 
-         6,7,8]
+frame = JFrame("Animal Sounds Tic Tac Toe")
+#frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+frame.setLocation(100,100)
+frame.setSize(500,500)
 
-def show():
-  print board[0],'|',board[1],'|',board[2]
-  print '----------'
-  print board[3],'|',board[4],'|',board[5]   
-  print '----------'
-  print board[6],'|',board[7],'|',board[8]                     
-  
-  welcomeMessage = 'Welcome to Animal Sounds Tic Tac Toe' 
-  
-  helpMessage = 'A two player game of tic tac toe where players win over squares by correctly guessing the animal sound sample.Each correct guess displays the animal represented by the sound.An incorrect guess results in the square being left open.The first player to complete a row of three for their shape wins!'
-   
-  #Welcome message for our game
-  showInformation(welcomeMessage)
-  showInformation(helpMessage)
-  
-              
-  #name = requestString('Player 1 please type in your name:')
-  #player1.setName(name)
-  #name = requestString('Player 2 please type in your name :')
-  #player2.setName(name)
-  
-  
+frame.setLayout(GridLayout(3,3))
+
+k = 0
+for i in range(1,4):
+   for j in range(1,4):
+      k = k+1
+      frame.add(JButton(str(k)))
+
+frame.setVisible(True)
            
      
