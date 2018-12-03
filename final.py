@@ -24,10 +24,10 @@ def show():
   showInformation(helpMessage)
   
               
-  name = requestString('Player 1 please type in your name:')
-  player1.setName(name)
-  name = requestString('Player 2 please type in your name :')
-  player2.setName(name)
+  #name = requestString('Player 1 please type in your name:')
+  #player1.setName(name)
+  #name = requestString('Player 2 please type in your name :')
+  #player2.setName(name)
   
    
      
