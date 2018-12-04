@@ -16,7 +16,7 @@ k = 0
 for i in range(1,4):
    for j in range(1,4):
       k = k+1
-      frame.add(JButton(str("Animal Sounds")))
+      frame.add(JButton(str("?")))
 
 frame.setVisible(True)
            
