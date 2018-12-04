@@ -40,6 +40,40 @@ class Player:
         return self.shape
 
 
+# One object of Animal square represents an animal complete with sounds.
+class Animal:
+
+  # Constructor method for class Animal
+  def __init__(self, name='', sound=None, picture=None):  
+    self.name = name
+    self.sound = sound
+    self.picture = picture
+
+  # This method returns the name for the animal object
+  def getName(self):
+    return self.name
+
+  # This method sets the name for the animal object
+  def setName(self, name):
+    self.name = name
+
+  # This method returns the sound for the animal object
+  def getSound(self):
+    return self.sound
+
+  # This method sets the sound for the animal object
+  def setSound(self, sound):
+    self.sound = sound
+
+  # This method returns the picture for the animal object
+  def getPicture(self):
+    return self.picture
+
+  # This method sets the picture for the animal object
+  def setSound(self, picture):
+    self.picture = picture
+
+
 ###############################################################################
 # Main Game Script
 ###############################################################################
