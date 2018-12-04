@@ -101,6 +101,11 @@ showInformation('Welcome %s and %s! Lets begin the game' % (player1.getName(),\
 
 # Does this all belong in the main game loop? Like the text adventure?
 
+# here we can create the list of animals, example below
+animalList = []
+#cow = Animal('cow', 'moo.wav', 'cow.jpg')
+#animalList.append(cow)
+
 frame = JFrame("Animal Sounds Tic Tac Toe")
 #frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
 frame.setLocation(100,100)
