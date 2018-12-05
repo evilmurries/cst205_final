@@ -106,20 +106,62 @@ animalList = []
 #cow = Animal('cow', 'moo.wav', 'cow.jpg')
 #animalList.append(cow)
 
-frame = JFrame("Animal Sounds Tic Tac Toe")
+#tic tac toe board with individual buttons(I need to make them bigger though)
+
+from java.awt import Dimension
+from javax.swing import JButton, JFrame,JPanel,BoxLayout,Box
+
+frame = JFrame()
+frame.setTitle("Animal")
 #frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
-frame.setLocation(100,100)
-frame.setSize(500,500)
+frame.setSize(500, 450)
 
-frame.setLayout(GridLayout(3,3))
 
-k = 0
-for i in range(1,4):
-   for j in range(1,4):
-      k = k+1
-      frame.add(JButton(str("?")))
+panel = JPanel()
+panel.setLayout(BoxLayout(panel, BoxLayout.Y_AXIS))
+frame.add(panel)
 
+###top panel
+top = JPanel()
+top.setLayout(BoxLayout(top, BoxLayout.X_AXIS))
+b1 = JButton("?")
+b2 = JButton("?")
+b3 =JButton("?")
+top.add(Box.createVerticalGlue())
+top.add(b1)
+top.add(Box.createRigidArea(Dimension(25, 0)))
+top.add(b2)
+top.add(Box.createRigidArea(Dimension(30, 0)))
+top.add(b3)
+
+###middle panel
+middle = JPanel()
+middle.setLayout(BoxLayout(middle, BoxLayout.X_AXIS))
+b6 = JButton("?")
+b7 = JButton("?")
+b8 = JButton("?")
+middle.add(b6)
+middle.add(Box.createRigidArea(Dimension(25, 0)))
+middle.add(b7)
+middle.add(Box.createVerticalGlue())
+middle.add(Box.createRigidArea(Dimension(30, 0)))
+middle.add(b8)
+
+###bottom panel
+bottom = JPanel()
+bottom.setLayout(BoxLayout(bottom, BoxLayout.X_AXIS))
+b3 = JButton("?")
+b4 = JButton("?")
+b5 = JButton("?")
+bottom.add(b3)
+bottom.add(Box.createRigidArea(Dimension(25, 0)))
+bottom.add(b4)
+bottom.add(Box.createVerticalGlue())
+bottom.add(Box.createRigidArea(Dimension(30, 0)))
+bottom.add(b5)
+
+
+panel.add(bottom)
+panel.add(middle)
+panel.add(top)
 frame.setVisible(True)
-
-           
-     
