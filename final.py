@@ -6,6 +6,7 @@ from javax.swing import JFrame, JButton
 from java.awt import GridLayout
 import os
 
+
 ###############################################################################
 # Classes
 ###############################################################################
@@ -61,6 +62,7 @@ class Animal:
     self.name = name
     self.sound = sound
     self.picture = picture
+    self.wasUsed = False
 
   # This method returns the name for the animal object
   def getName(self):
@@ -82,9 +84,9 @@ class Animal:
   def getPicture(self):
     return self.picture
 
-  # This method sets the picture for the animal object
-  def setSound(self, picture):
-    self.picture = picture
+  # Returns False if the animal object has not been used in the game yet.
+  def wasUsed(self):
+    return self.wasUsed
 
   # This method describes the print characteristics of class Player
   def __str__(self):
@@ -95,23 +97,24 @@ class Animal:
 ################################################################################
 
 def makeAnimals():
-
+  soundsPath = setMediaFolder()
+  picsPath = setMediaFolder()
   animals = []
   # create animal objects
-  bear = Animal('bear')
-  bird = Animal('bird')
-  cat = Animal('cat')
-  chicken = Animal('chicken')
-  cow = Animal('cow')
-  cricket = Animal('cricket')
-  dog = Animal('dog')
-  dolphin = Animal('dolphin')
-  donkey = Animal('donkey')
-  horse = Animal('horse')
-  monkey = Animal('monkey')
-  pig = Animal('pig')
-  seal = Animal('seal')
-  whale = Animal('whale')
+  bear = Animal('bear', soundsPath + 'bear_growl_y.wav', picsPath + 'bear.jpg')
+  bird = Animal('bird', soundsPath + 'bird.wav', picsPath + 'bird.jpg')
+  cat = Animal('cat' , soundsPath + 'cat_y.wav', picsPath + 'cat.jpg')
+  chicken = Animal('chicken', soundsPath + 'chicken.wav', picsPath + 'bear.jpg')
+  cow = Animal('cow', soundsPath + 'cow1.wav', picsPath + 'bear.jpg')
+  cricket = Animal('cricket', soundsPath + 'crickets.wav', picsPath + 'bear.jpg')
+  dog = Animal('dog', soundsPath + 'dog_bark2.wav', picsPath + 'dog.jpg')
+  dolphin = Animal('dolphin', soundsPath + 'dolphin.wav', picsPath + 'bear.jpg')
+  donkey = Animal('donkey', soundsPath + 'donkey_x.wav', picsPath + 'bear.jpg')
+  horse = Animal('horse', soundsPath + 'horse.wav', picsPath + 'bear.jpg')
+  monkey = Animal('monkey', soundsPath + 'monkey1.wav', picsPath + 'bear.jpg')
+  pig = Animal('pig', soundsPath + 'pig.wav', picsPath + 'bear.jpg')
+  seal = Animal('seal', soundsPath + 'seal3.wav', picsPath + 'bear.jpg')
+  whale = Animal('whale', soundsPath + 'whale.wav', picsPath + 'bear.jpg')
 
   # add animals to the list
   animals.append(bear)
@@ -128,7 +131,12 @@ def makeAnimals():
   animals.append(pig)
   animals.append(seal)
   animals.append(whale)
+
   return animals
+
+# Main game loop after 
+def game():
+  return
 
 ################################################################################
 # Main Game Script
@@ -140,7 +148,7 @@ helpMessage = 'A two player game of tic tac toe where players win over squares\
  animal represented by the sound. An incorrect guess results in the square\
  being left open. The first player to complete a row of three for their shape\
   wins!'
-   
+
 #Welcome message for our game
 showInformation(welcomeMessage)
 showInformation(helpMessage)
@@ -150,15 +158,15 @@ player1 = Player(1)
 player2 = Player(2)
 player1.setName()
 player2.setName()
+player1.setShape('circle')
+player2.setShape('x')
 showInformation('Welcome %s and %s! Lets begin the game' % (player1.getName(),\
  player2.getName()))
 
-# Does this all belong in the main game loop? Like the text adventure?
-
+# create animal objects
 animalList = makeAnimals()
 
 #tic tac toe board with individual buttons
-
 frame = JFrame("Sounds")
 #frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
 frame.setLocation(100,100)
