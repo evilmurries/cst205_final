@@ -4,6 +4,9 @@
 
 from javax.swing import JFrame, JButton
 from java.awt import GridLayout
+from java.awt import Dimension
+from javax.swing import JButton, JFrame,JPanel,BoxLayout,Box
+import os
 
 ###############################################################################
 # Classes
@@ -46,8 +49,8 @@ class Animal:
   # Constructor method for class Animal
   def __init__(self, name='', sound=None, picture=None):  
     self.name = name
-    self.sound = sound
-    self.picture = picture
+    self.sound = makeSound(sound)
+    self.picture = makePicture(picture)
 
   # This method returns the name for the animal object
   def getName(self):
@@ -72,6 +75,11 @@ class Animal:
   # This method sets the picture for the animal object
   def setSound(self, picture):
     self.picture = picture
+
+  def __str__(self):
+    print self.name
+    explore(self.sound)
+    explore(self.picture)
 
 
 ###############################################################################
@@ -102,14 +110,13 @@ showInformation('Welcome %s and %s! Lets begin the game' % (player1.getName(),\
 # Does this all belong in the main game loop? Like the text adventure?
 
 # here we can create the list of animals, example below
+path = os.path.abspath('.')
 animalList = []
-#cow = Animal('cow', 'moo.wav', 'cow.jpg')
-#animalList.append(cow)
+#dog = Animal('dog', (path + 'animal sounds/dog_bark2.wav'), path + 'peek.jpg')
+animalList.append(dog)
+
 
 #tic tac toe board with individual buttons(I need to make them bigger though)
-
-from java.awt import Dimension
-from javax.swing import JButton, JFrame,JPanel,BoxLayout,Box
 
 frame = JFrame()
 frame.setTitle("Animal")
