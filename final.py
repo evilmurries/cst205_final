@@ -104,17 +104,17 @@ def makeAnimals():
   bear = Animal('bear', soundsPath + 'bear_growl_y.wav', picsPath + 'bear.jpg')
   bird = Animal('bird', soundsPath + 'bird.wav', picsPath + 'bird.jpg')
   cat = Animal('cat' , soundsPath + 'cat_y.wav', picsPath + 'cat.jpg')
-  chicken = Animal('chicken', soundsPath + 'chicken.wav', picsPath + 'bear.jpg')
-  cow = Animal('cow', soundsPath + 'cow1.wav', picsPath + 'bear.jpg')
-  cricket = Animal('cricket', soundsPath + 'crickets.wav', picsPath + 'bear.jpg')
+  chicken = Animal('chicken', soundsPath + 'chicken.wav', picsPath + 'chicken.jpg')
+  cow = Animal('cow', soundsPath + 'cow1.wav', picsPath + 'cow.jpg')
+  cricket = Animal('cricket', soundsPath + 'crickets.wav', picsPath + 'crickets.jpg')
   dog = Animal('dog', soundsPath + 'dog_bark2.wav', picsPath + 'dog.jpg')
-  dolphin = Animal('dolphin', soundsPath + 'dolphin.wav', picsPath + 'bear.jpg')
-  donkey = Animal('donkey', soundsPath + 'donkey_x.wav', picsPath + 'bear.jpg')
-  horse = Animal('horse', soundsPath + 'horse.wav', picsPath + 'bear.jpg')
-  monkey = Animal('monkey', soundsPath + 'monkey1.wav', picsPath + 'bear.jpg')
-  pig = Animal('pig', soundsPath + 'pig.wav', picsPath + 'bear.jpg')
-  seal = Animal('seal', soundsPath + 'seal3.wav', picsPath + 'bear.jpg')
-  whale = Animal('whale', soundsPath + 'whale.wav', picsPath + 'bear.jpg')
+  dolphin = Animal('dolphin', soundsPath + 'dolphin.wav', picsPath + 'dolphin.jpg')
+  donkey = Animal('donkey', soundsPath + 'donkey_x.wav', picsPath + 'donkey.jpg')
+  horse = Animal('horse', soundsPath + 'horse.wav', picsPath + 'horse.jpg')
+  monkey = Animal('monkey', soundsPath + 'monkey1.wav', picsPath + 'monkey.jpg')
+  pig = Animal('pig', soundsPath + 'pig.wav', picsPath + 'pig.jpg')
+  seal = Animal('seal', soundsPath + 'seal3.wav', picsPath + 'seal.jpg')
+  whale = Animal('whale', soundsPath + 'whale.wav', picsPath + 'whale.jpg')
 
   # add animals to the list
   animals.append(bear)
@@ -188,3 +188,66 @@ for i in range(1,10):
       k = k+1
       frame.add(JButton(str(k)))
 frame.setVisible(True)
+
+
+################################################################################
+# animal image attributions
+################################################################################
+
+#HORSE
+#By Nokota_Horses.jpg: François Marchalderivative work: Dana boomer (talk) - 
+#Nokota_Horses.jpg, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?
+#curid=9456234
+
+#BEAR
+#By Yathin S Krishnappa - Own work, CC BY-SA 3.0, https://commons.wikimedia.org
+#/w/index.php?curid=21436762
+
+#BIRD
+#By Dibyendu Ash - This is an image of Bar-throated Siva photographed at Fambong
+# Lho WLS on March 2014.Previously published: Yes this file has been published 
+#previously in my Facebook profile. Also the same is present in the Facebook 
+#group called Indian Birds, CC BY-SA 3.0, https://commons.wikimedia.org/w/index
+#.php?curid=31986161
+
+#CAT
+#By David Corby Edited by: Arad - Image:Kittyplya03042006.JPG, CC BY 2.5, 
+#https://commons.wikimedia.org/w/index.php?curid=1839754
+
+#CHICKEN
+#By Andrei Niemimäki from Turku, Finland - Friends, CC BY-SA 2.0,
+# https://commons.wikimedia.org/w/index.php?curid=3769100
+
+#COW
+#https://commons.wikimedia.org/wiki/File:CH_cow_2_cropped.jpg#/media/
+#File:CH_cow_2_cropped.jpg
+
+#CRICKETS
+#By Sean Wallace - Own work, CC BY-SA 3.0, 
+#https://commons.wikimedia.org/w/index.php?curid=21277448
+
+#DOG
+#
+
+#DOLPHIN
+#By NASA - http://mediaarchive.ksc.nasa.gov/detail.cfm?mediaid=21807, 
+#Public Domain, https://commons.wikimedia.org/w/index.php?curid=112006
+
+#DONKEY
+#Public Domain, https://commons.wikimedia.org/w/index.php?curid=123075
+
+#MONKEY
+#By Carlos Delgado - Own work, CC BY-SA 4.0, 
+#https://commons.wikimedia.org/w/index.php?curid=34667538
+
+#PIG
+#By Johan Spaedtke - Own work, CC0, 
+#https://commons.wikimedia.org/w/index.php?curid=26954959
+
+#SEAL
+#CC BY-SA 2.0 de, https://commons.wikimedia.org/w/index.php?curid=354703
+
+#WHALE
+#By Michaël CATANZARITI - by Michaël CATANZARITI, CC BY-SA 3.0, 
+#https://commons.wikimedia.org/w/index.php?curid=396382
+
