@@ -16,19 +16,31 @@ import os
 class Player:
 
     # Constructor method for Class Player
-    def __init__(self, inventory=[], squares=[], name='', shape=''):
+    def __init__(self, number, inventory=[], squares=[], name='', shape=''):
+        self.number = number
         self.inventory = inventory
         self.name = name
         self.squares = squares
         self.shape = shape
 
     # This method sets the name of the player
-    def setName(self, name):
-        self.name = name
+    def setName(self):
+      name = ''
+      while name == '':
+        name = requestString('Player %d: Type in your name.' % self.number)
+      self.name = name
 
     # This method returns the name of the player
     def getName(self):
         return self.name
+
+    # This method sets the player number
+    def setNumber(self, number):
+      self.number = number
+
+    # This method returns the player number
+    def getNumber(self):
+      return self.number
 
     # This method adds a square to the player's won squares
     def addSquare(self, square):
@@ -57,7 +69,7 @@ class Animal:
     return self.name
 
   # This method sets the name for the animal object
-  def setName(self, name):
+  def setName(self):
     self.name = name
 
   # This method returns the sound for the animal object
@@ -76,6 +88,7 @@ class Animal:
   def setSound(self, picture):
     self.picture = picture
 
+  # This method describes the print characteristics of class Player
   def __str__(self):
     print self.name
 
@@ -119,8 +132,6 @@ def makeAnimals():
   animals.append(whale)
   return animals
 
-
-
 ################################################################################
 # Main Game Script
 ################################################################################
@@ -137,21 +148,16 @@ showInformation(welcomeMessage)
 showInformation(helpMessage)
 
 # create players
-player1 = Player()
-player2 = Player()
-name = requestString('Player 1: Type in your name.')
-player1.setName(name)
-name = requestString('Player 2: Type in your name.')
-player2.setName(name)
+player1 = Player(1)
+player2 = Player(2)
+player1.setName()
+player2.setName()
 showInformation('Welcome %s and %s! Lets begin the game' % (player1.getName(),\
  player2.getName()))
 
 # Does this all belong in the main game loop? Like the text adventure?
 
-# here we can create the list of animals, example below
 animalList = makeAnimals()
-for animal in animalList:
-  printNow(animal.getName())
 
 #tic tac toe board with individual buttons(I need to make them bigger though)
 
