@@ -168,84 +168,46 @@ animalList = makeAnimals()
 
 #tic tac toe board with individual buttons
 
-frame = JFrame()
-frame.setTitle("Animal")
-#frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+from javax.swing import JFrame, JButton
+from java.awt import GridLayout
 
-'''
+frame = JFrame("Sound")
 frame.setLocation(100,100)
-frame.setSize(600,600)
+frame.setSize(400,400)
 frame.setLayout(GridLayout(3,3))
-b1=JButton
-b2=JButton
-b3=JButton
-b4=JButton
-b5=JButton
-b6=JButton
-b7=JButton
-b8=JButton
-b9=JButton
 
-k = 0
-for i in range(1,10):
-   for j in range(1,2):
-      k = k+1
-      frame.add(JButton(str(k)))
+def clickhere(event):
+   print "clicked"
+
+btn = JButton("Choose", actionPerformed = clickhere)
+frame.add(btn)
+
+btn1 = JButton("A", actionPerformed = clickhere)
+frame.add(btn1)
+
+btn2 = JButton("Card", actionPerformed = clickhere)
+frame.add(btn2)
+
+btn3 = JButton("Add", actionPerformed = clickhere)
+frame.add(btn3)
+
+btn4 = JButton("Add", actionPerformed = clickhere)
+frame.add(btn4)
+
+btn5 = JButton("Add", actionPerformed = clickhere)
+frame.add(btn5)
+
+btn6 = JButton("Add", actionPerformed = clickhere)
+frame.add(btn6)
+
+btn7 = JButton("Add", actionPerformed = clickhere)
+frame.add(btn7)
+
+btn8 = JButton("Add", actionPerformed = clickhere)
+frame.add(btn8)
+
+
 frame.setVisible(True)
-'''
-
-frame.setSize(500, 450)
-
-
-panel = JPanel()
-panel.setLayout(BoxLayout(panel, BoxLayout.Y_AXIS))
-frame.add(panel)
-
-###top panel
-top = JPanel()
-top.setLayout(BoxLayout(top, BoxLayout.X_AXIS))
-b1 = JButton("?")
-b2 = JButton("?")
-b3 =JButton("?")
-top.add(Box.createVerticalGlue())
-top.add(b1)
-top.add(Box.createRigidArea(Dimension(25, 0)))
-top.add(b2)
-top.add(Box.createRigidArea(Dimension(30, 0)))
-top.add(b3)
-
-###middle panel
-middle = JPanel()
-middle.setLayout(BoxLayout(middle, BoxLayout.X_AXIS))
-b4 = JButton("?")
-b5 = JButton("?")
-b6 = JButton("?")
-middle.add(b4)
-middle.add(Box.createRigidArea(Dimension(25, 0)))
-middle.add(b5)
-middle.add(Box.createVerticalGlue())
-middle.add(Box.createRigidArea(Dimension(30, 0)))
-middle.add(b6)
-
-###bottom panel
-bottom = JPanel()
-bottom.setLayout(BoxLayout(bottom, BoxLayout.X_AXIS))
-b7 = JButton("?")
-b8 = JButton("?")
-b9 = JButton("?")
-bottom.add(b7)
-bottom.add(Box.createRigidArea(Dimension(25, 0)))
-bottom.add(b8)
-bottom.add(Box.createVerticalGlue())
-bottom.add(Box.createRigidArea(Dimension(30, 0)))
-bottom.add(b9)
-
-
-panel.add(bottom)
-panel.add(middle)
-panel.add(top)
-frame.setVisible(True)
-
 
 ################################################################################
 # animal image attributions
