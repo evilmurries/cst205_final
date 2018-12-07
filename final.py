@@ -2,8 +2,8 @@
 # M. Mariscal, C. Piwarski, W. Robleh
 
 
-from javax.swing import JFrame, JButton
-from java.awt import GridLayout
+from java.awt import Dimension
+from javax.swing import JButton, JFrame,JPanel,BoxLayout,Box
 import os
 
 
@@ -167,8 +167,12 @@ showInformation('Welcome %s and %s! Lets begin the game' % (player1.getName(),\
 animalList = makeAnimals()
 
 #tic tac toe board with individual buttons
-frame = JFrame("Sounds")
+
+frame = JFrame()
+frame.setTitle("Animal")
 #frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
+
+'''
 frame.setLocation(100,100)
 frame.setSize(600,600)
 frame.setLayout(GridLayout(3,3))
@@ -187,6 +191,59 @@ for i in range(1,10):
    for j in range(1,2):
       k = k+1
       frame.add(JButton(str(k)))
+frame.setVisible(True)
+'''
+
+frame.setSize(500, 450)
+
+
+panel = JPanel()
+panel.setLayout(BoxLayout(panel, BoxLayout.Y_AXIS))
+frame.add(panel)
+
+###top panel
+top = JPanel()
+top.setLayout(BoxLayout(top, BoxLayout.X_AXIS))
+b1 = JButton("?")
+b2 = JButton("?")
+b3 =JButton("?")
+top.add(Box.createVerticalGlue())
+top.add(b1)
+top.add(Box.createRigidArea(Dimension(25, 0)))
+top.add(b2)
+top.add(Box.createRigidArea(Dimension(30, 0)))
+top.add(b3)
+
+###middle panel
+middle = JPanel()
+middle.setLayout(BoxLayout(middle, BoxLayout.X_AXIS))
+b4 = JButton("?")
+b5 = JButton("?")
+b6 = JButton("?")
+middle.add(b4)
+middle.add(Box.createRigidArea(Dimension(25, 0)))
+middle.add(b5)
+middle.add(Box.createVerticalGlue())
+middle.add(Box.createRigidArea(Dimension(30, 0)))
+middle.add(b6)
+
+###bottom panel
+bottom = JPanel()
+bottom.setLayout(BoxLayout(bottom, BoxLayout.X_AXIS))
+b7 = JButton("?")
+b8 = JButton("?")
+b9 = JButton("?")
+bottom.add(b7)
+bottom.add(Box.createRigidArea(Dimension(25, 0)))
+bottom.add(b8)
+bottom.add(Box.createVerticalGlue())
+bottom.add(Box.createRigidArea(Dimension(30, 0)))
+bottom.add(b9)
+
+
+panel.add(bottom)
+panel.add(middle)
+panel.add(top)
 frame.setVisible(True)
 
 
@@ -250,4 +307,3 @@ frame.setVisible(True)
 #WHALE
 #By Michaël CATANZARITI - by Michaël CATANZARITI, CC BY-SA 3.0, 
 #https://commons.wikimedia.org/w/index.php?curid=396382
-
