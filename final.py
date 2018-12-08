@@ -3,7 +3,7 @@
 
 
 from java.awt import Dimension
-from javax.swing import JButton, JFrame,JPanel,BoxLayout,Box
+from javax.swing import JButton, JFrame, JPanel, BoxLayout, Box
 import os
 
 
@@ -60,8 +60,8 @@ class Animal:
   # Constructor method for class Animal
   def __init__(self, name='', sound=None, picture=None):  
     self.name = name
-    self.sound = sound
-    self.picture = picture
+    self.sound = makeSound(sound)
+    self.picture = makePicture(picture)
     self.wasUsed = False
 
   # This method returns the name for the animal object
@@ -97,24 +97,67 @@ class Animal:
 ################################################################################
 
 def makeAnimals():
-  soundsPath = setMediaFolder()
-  picsPath = setMediaFolder()
+
   animals = []
+
+  directory = os.path.dirname(__file__)
+
   # create animal objects
-  bear = Animal('bear', soundsPath + 'bear_growl_y.wav', picsPath + 'bear.jpg')
-  bird = Animal('bird', soundsPath + 'bird.wav', picsPath + 'bird.jpg')
-  cat = Animal('cat' , soundsPath + 'cat_y.wav', picsPath + 'cat.jpg')
-  chicken = Animal('chicken', soundsPath + 'chicken.wav', picsPath + 'chicken.jpg')
-  cow = Animal('cow', soundsPath + 'cow1.wav', picsPath + 'cow.jpg')
-  cricket = Animal('cricket', soundsPath + 'crickets.wav', picsPath + 'crickets.jpg')
-  dog = Animal('dog', soundsPath + 'dog_bark2.wav', picsPath + 'dog.jpg')
-  dolphin = Animal('dolphin', soundsPath + 'dolphin.wav', picsPath + 'dolphin.jpg')
-  donkey = Animal('donkey', soundsPath + 'donkey_x.wav', picsPath + 'donkey.jpg')
-  horse = Animal('horse', soundsPath + 'horse.wav', picsPath + 'horse.jpg')
-  monkey = Animal('monkey', soundsPath + 'monkey1.wav', picsPath + 'monkey.jpg')
-  pig = Animal('pig', soundsPath + 'pig.wav', picsPath + 'pig.jpg')
-  seal = Animal('seal', soundsPath + 'seal3.wav', picsPath + 'seal.jpg')
-  whale = Animal('whale', soundsPath + 'whale.wav', picsPath + 'whale.jpg')
+  soundPath = os.path.join(directory, 'animal sounds', 'bear_growl_y.wav')
+  picPath = os.path.join(directory, 'animal pics', 'bear.jpg')
+  bear = Animal('bear', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'bird.wav')
+  picPath = os.path.join(directory, 'animal pics', 'bird.jpg')
+  bird = Animal('bird', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'cat_y.wav')
+  picPath = os.path.join(directory, 'animal pics', 'cat.jpg')
+  cat = Animal('cat', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'chicken.wav')
+  picPath = os.path.join(directory, 'animal pics', 'chicken.jpg')
+  chicken = Animal('chicken', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'cow1.wav')
+  picPath = os.path.join(directory, 'animal pics', 'cow.jpg')
+  cow = Animal('cow', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'crickets.wav')
+  picPath = os.path.join(directory, 'animal pics', 'crickets.jpg')
+  cricket = Animal('cricket', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'dog_bark2.wav')
+  picPath = os.path.join(directory, 'animal pics', 'dog.jpg')
+  dog = Animal('dog', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'dolphin.wav')
+  picPath = os.path.join(directory, 'animal pics', 'dolphin.jpg')
+  dolphin = Animal('dolphin', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'donkey_x.wav')
+  picPath = os.path.join(directory, 'animal pics', 'donkey.jpg')
+  donkey = Animal('donkey', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'horse.wav')
+  picPath = os.path.join(directory, 'animal pics', 'horse.jpg')
+  horse = Animal('horse', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'monkey1.wav')
+  picPath = os.path.join(directory, 'animal pics', 'monkey.jpg')
+  monkey = Animal('monkey', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'pig.wav')
+  picPath = os.path.join(directory, 'animal pics', 'pig.jpg')
+  pig = Animal('pig', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'seal3.wav')
+  picPath = os.path.join(directory, 'animal pics', 'seal.jpg')
+  seal = Animal('seal', soundPath, picPath)
+
+  soundPath = os.path.join(directory, 'animal sounds', 'whale.wav')
+  picPath = os.path.join(directory, 'animal pics', 'whale.jpg')
+  whale = Animal('whale', soundPath, picPath)
 
   # add animals to the list
   animals.append(bear)
@@ -214,7 +257,7 @@ frame.setVisible(True)
 ################################################################################
 
 #HORSE
-#By Nokota_Horses.jpg: François Marchalderivative work: Dana boomer (talk) - 
+#By Nokota_Horses.jpg: Fran??ois Marchalderivative work: Dana boomer (talk) - 
 #Nokota_Horses.jpg, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?
 #curid=9456234
 
@@ -234,7 +277,7 @@ frame.setVisible(True)
 #https://commons.wikimedia.org/w/index.php?curid=1839754
 
 #CHICKEN
-#By Andrei Niemimäki from Turku, Finland - Friends, CC BY-SA 2.0,
+#By Andrei Niemim??ki from Turku, Finland - Friends, CC BY-SA 2.0,
 # https://commons.wikimedia.org/w/index.php?curid=3769100
 
 #COW
@@ -267,5 +310,5 @@ frame.setVisible(True)
 #CC BY-SA 2.0 de, https://commons.wikimedia.org/w/index.php?curid=354703
 
 #WHALE
-#By Michaël CATANZARITI - by Michaël CATANZARITI, CC BY-SA 3.0, 
+#By Micha??l CATANZARITI - by Micha??l CATANZARITI, CC BY-SA 3.0, 
 #https://commons.wikimedia.org/w/index.php?curid=396382
