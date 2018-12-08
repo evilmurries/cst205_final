@@ -140,11 +140,15 @@ class ticTacToeBoard(JFrame):
 
     self.setVisible(True)
 
-    self.gameLoop()
+    #self.gameLoop()
 
   # This method handles what happens when a button is pressed
-  def clickHere(self, button):
-    showInformation('clicked %d' % button)
+  # Used this source to determine the name of the event
+  # https://stackoverflow.com/questions/8084679/jython-swing-passing-more-
+  # than-self-and-event-on-a-button-press
+  def clickHere(self, event):
+    sender = event.getSource()
+    showInformation(sender.getText())
 
   # This method closes the window when clicked to
   def closeWindow(self, event):
