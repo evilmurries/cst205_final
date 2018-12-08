@@ -1,8 +1,9 @@
 # Team 10 - Final Project
 # M. Mariscal, C. Piwarski, W. Robleh
+# Developed with Python2 and JES
 
 
-from java.awt import Dimension
+from java.awt import Dimension, GridLayout
 from javax.swing import JButton, JFrame, JPanel, BoxLayout, Box
 import os
 
@@ -92,6 +93,58 @@ class Animal:
   def __str__(self):
     print self.name
 
+
+# One instance of class ticTacToeBoard creates the board for the game of 
+# animal sounds tic tac toe.
+class ticTacToeBoard(JFrame):
+
+  # Constructor method for class ticTacToeBoard. Assembles the board
+  def __init__(self, animals):
+
+    super(ticTacToeBoard, self).__init__(windowClosing=self.closeWindow)
+    self.setTitle('Animal Sounds Tic Tac Toe')
+    self.setSize(400,400)
+    self.setLayout(GridLayout(3,3))
+    self.animals = animals
+
+    self.btn1 = JButton("Choose", actionPerformed = self.clickHere)
+    self.add(self.btn1)
+
+    self.btn2 = JButton("A", actionPerformed = self.clickHere)
+    self.add(self.btn2)
+
+    self.btn3 = JButton("Card", actionPerformed = self.clickHere)
+    self.add(self.btn3)
+
+    self.btn4 = JButton("Add", actionPerformed = self.clickHere)
+    self.add(self.btn4)
+
+    self.btn5 = JButton("Add", actionPerformed = self.clickHere)
+    self.add(self.btn5)
+
+    self.btn6 = JButton("Add", actionPerformed = self.clickHere)
+    self.add(self.btn6)
+
+    self.btn7 = JButton("Add", actionPerformed = self.clickHere)
+    self.add(self.btn7)
+
+    self.btn8 = JButton("Add", actionPerformed = self.clickHere)
+    self.add(self.btn8)
+
+    self.btn9 = JButton("Add", actionPerformed = self.clickHere)
+    self.add(self.btn9)
+
+    self.setVisible(True)
+
+  # This method handles what happens when a button is pressed
+  def clickHere(self, event):
+    showInformation('clicked')
+
+  # This method closes the window when clicked to
+  def closeWindow(self, event):
+    self.dispose()
+
+
 ################################################################################
 # functions
 ################################################################################
@@ -177,10 +230,6 @@ def makeAnimals():
 
   return animals
 
-# Main game loop after 
-def game():
-  return
-
 ################################################################################
 # Main Game Script
 ################################################################################
@@ -209,48 +258,8 @@ showInformation('Welcome %s and %s! Lets begin the game' % (player1.getName(),\
 # create animal objects
 animalList = makeAnimals()
 
-#tic tac toe board with individual buttons
-
-from javax.swing import JFrame, JButton
-from java.awt import GridLayout
-
-frame = JFrame("Sound")
-frame.setLocation(100,100)
-frame.setSize(400,400)
-frame.setLayout(GridLayout(3,3))
-
-def clickhere(event):
-   print "clicked"
-
-btn = JButton("Choose", actionPerformed = clickhere)
-frame.add(btn)
-
-btn1 = JButton("A", actionPerformed = clickhere)
-frame.add(btn1)
-
-btn2 = JButton("Card", actionPerformed = clickhere)
-frame.add(btn2)
-
-btn3 = JButton("Add", actionPerformed = clickhere)
-frame.add(btn3)
-
-btn4 = JButton("Add", actionPerformed = clickhere)
-frame.add(btn4)
-
-btn5 = JButton("Add", actionPerformed = clickhere)
-frame.add(btn5)
-
-btn6 = JButton("Add", actionPerformed = clickhere)
-frame.add(btn6)
-
-btn7 = JButton("Add", actionPerformed = clickhere)
-frame.add(btn7)
-
-btn8 = JButton("Add", actionPerformed = clickhere)
-frame.add(btn8)
-
-
-frame.setVisible(True)
+# assemble tic tac toe board
+board = ticTacToeBoard(animalList)
 
 ################################################################################
 # animal image attributions
