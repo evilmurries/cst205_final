@@ -106,9 +106,11 @@ class ticTacToeBoard(JFrame):
     self.setSize(400,400)
     self.setLayout(GridLayout(3,3))
 
+    # create player and animal objects
     self.createPlayers()
     self.makeAnimals()
 
+    # Create and add buttons
     self.btn1 = JButton("Choose", actionPerformed = self.clickHere)
     self.add(self.btn1)
 
@@ -138,6 +140,8 @@ class ticTacToeBoard(JFrame):
 
     self.setVisible(True)
 
+    self.gameLoop()
+
   # This method handles what happens when a button is pressed
   def clickHere(self, event):
     showInformation('clicked')
@@ -157,6 +161,7 @@ class ticTacToeBoard(JFrame):
     showInformation('Welcome %s and %s! Lets begin the game' % \
       (self.player1.getName(), self.player2.getName()))
 
+  # This method creates a list of animals for the game
   def makeAnimals(self):
 
     self.animals = []
@@ -235,9 +240,33 @@ class ticTacToeBoard(JFrame):
     self.animals.append(seal)
     self.animals.append(whale)
 
+  # This method prints out the names of all the animals in the game
   def printAnimals(self):
     for animal in self.animals:
       printNow(animal.getName())
+
+  def changePlayerTurn(self, currentPlayer):
+    if currentPlayer.getNumber() == 1:
+      return self.player2
+    else:
+      return self.player1
+
+
+  # This method controls a game of tic tac toe.
+  def gameLoop(self):
+
+    playerTurn = player1
+    isGameWon = False
+    winner = ''
+
+    # keep looping turns until the game is won by someone
+    while isGameWon is False:
+      showInformation('%s, select a tile' % playerTurn.getName())
+
+
+
+      playerTurn = self.changePlayerTurn(playerTurn)
+    return
 
 
 ################################################################################
