@@ -99,13 +99,15 @@ class Animal:
 class ticTacToeBoard(JFrame):
 
   # Constructor method for class ticTacToeBoard. Assembles the board
-  def __init__(self, animals):
+  def __init__(self):
 
     super(ticTacToeBoard, self).__init__(windowClosing=self.closeWindow)
     self.setTitle('Animal Sounds Tic Tac Toe')
     self.setSize(400,400)
     self.setLayout(GridLayout(3,3))
-    self.animals = animals
+
+    self.createPlayers()
+    self.makeAnimals()
 
     self.btn1 = JButton("Choose", actionPerformed = self.clickHere)
     self.add(self.btn1)
@@ -144,91 +146,99 @@ class ticTacToeBoard(JFrame):
   def closeWindow(self, event):
     self.dispose()
 
+  # This method creates the players for the game
+  def createPlayers(self):
+    self.player1 = Player(1)
+    self.player2 = Player(2)
+    self.player1.setName()
+    self.player2.setName()
+    self.player1.setShape('circle')
+    self.player2.setShape('x')
+    showInformation('Welcome %s and %s! Lets begin the game' % \
+      (self.player1.getName(), self.player2.getName()))
 
-################################################################################
-# functions
-################################################################################
+  def makeAnimals(self):
 
-def makeAnimals():
+    self.animals = []
+    directory = os.path.dirname(__file__)
 
-  animals = []
+    # create animal objects
+    soundPath = os.path.join(directory, 'animal sounds', 'bear_growl_y.wav')
+    picPath = os.path.join(directory, 'animal pics', 'bear.jpg')
+    bear = Animal('bear', soundPath, picPath)
 
-  directory = os.path.dirname(__file__)
+    soundPath = os.path.join(directory, 'animal sounds', 'bird.wav')
+    picPath = os.path.join(directory, 'animal pics', 'bird.jpg')
+    bird = Animal('bird', soundPath, picPath)
 
-  # create animal objects
-  soundPath = os.path.join(directory, 'animal sounds', 'bear_growl_y.wav')
-  picPath = os.path.join(directory, 'animal pics', 'bear.jpg')
-  bear = Animal('bear', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'cat_y.wav')
+    picPath = os.path.join(directory, 'animal pics', 'cat.jpg')
+    cat = Animal('cat', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'bird.wav')
-  picPath = os.path.join(directory, 'animal pics', 'bird.jpg')
-  bird = Animal('bird', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'chicken.wav')
+    picPath = os.path.join(directory, 'animal pics', 'chicken.jpg')
+    chicken = Animal('chicken', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'cat_y.wav')
-  picPath = os.path.join(directory, 'animal pics', 'cat.jpg')
-  cat = Animal('cat', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'cow1.wav')
+    picPath = os.path.join(directory, 'animal pics', 'cow.jpg')
+    cow = Animal('cow', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'chicken.wav')
-  picPath = os.path.join(directory, 'animal pics', 'chicken.jpg')
-  chicken = Animal('chicken', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'crickets.wav')
+    picPath = os.path.join(directory, 'animal pics', 'crickets.jpg')
+    cricket = Animal('cricket', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'cow1.wav')
-  picPath = os.path.join(directory, 'animal pics', 'cow.jpg')
-  cow = Animal('cow', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'dog_bark2.wav')
+    picPath = os.path.join(directory, 'animal pics', 'dog.jpg')
+    dog = Animal('dog', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'crickets.wav')
-  picPath = os.path.join(directory, 'animal pics', 'crickets.jpg')
-  cricket = Animal('cricket', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'dolphin.wav')
+    picPath = os.path.join(directory, 'animal pics', 'dolphin.jpg')
+    dolphin = Animal('dolphin', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'dog_bark2.wav')
-  picPath = os.path.join(directory, 'animal pics', 'dog.jpg')
-  dog = Animal('dog', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'donkey_x.wav')
+    picPath = os.path.join(directory, 'animal pics', 'donkey.jpg')
+    donkey = Animal('donkey', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'dolphin.wav')
-  picPath = os.path.join(directory, 'animal pics', 'dolphin.jpg')
-  dolphin = Animal('dolphin', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'horse.wav')
+    picPath = os.path.join(directory, 'animal pics', 'horse.jpg')
+    horse = Animal('horse', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'donkey_x.wav')
-  picPath = os.path.join(directory, 'animal pics', 'donkey.jpg')
-  donkey = Animal('donkey', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'monkey1.wav')
+    picPath = os.path.join(directory, 'animal pics', 'monkey.jpg')
+    monkey = Animal('monkey', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'horse.wav')
-  picPath = os.path.join(directory, 'animal pics', 'horse.jpg')
-  horse = Animal('horse', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'pig.wav')
+    picPath = os.path.join(directory, 'animal pics', 'pig.jpg')
+    pig = Animal('pig', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'monkey1.wav')
-  picPath = os.path.join(directory, 'animal pics', 'monkey.jpg')
-  monkey = Animal('monkey', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'seal3.wav')
+    picPath = os.path.join(directory, 'animal pics', 'seal.jpg')
+    seal = Animal('seal', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'pig.wav')
-  picPath = os.path.join(directory, 'animal pics', 'pig.jpg')
-  pig = Animal('pig', soundPath, picPath)
+    soundPath = os.path.join(directory, 'animal sounds', 'whale.wav')
+    picPath = os.path.join(directory, 'animal pics', 'whale.jpg')
+    whale = Animal('whale', soundPath, picPath)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'seal3.wav')
-  picPath = os.path.join(directory, 'animal pics', 'seal.jpg')
-  seal = Animal('seal', soundPath, picPath)
+    # add animals to the list
+    self.animals.append(bear)
+    self.animals.append(bird)
+    self.animals.append(cat)
+    self.animals.append(chicken)
+    self.animals.append(cow)
+    self.animals.append(cricket)
+    self.animals.append(dog)
+    self.animals.append(dolphin)
+    self.animals.append(donkey)
+    self.animals.append(horse)
+    self.animals.append(monkey)
+    self.animals.append(pig)
+    self.animals.append(seal)
+    self.animals.append(whale)
 
-  soundPath = os.path.join(directory, 'animal sounds', 'whale.wav')
-  picPath = os.path.join(directory, 'animal pics', 'whale.jpg')
-  whale = Animal('whale', soundPath, picPath)
+  def printAnimals(self):
+    for animal in self.animals:
+      printNow(animal.getName())
 
-  # add animals to the list
-  animals.append(bear)
-  animals.append(bird)
-  animals.append(cat)
-  animals.append(chicken)
-  animals.append(cow)
-  animals.append(cricket)
-  animals.append(dog)
-  animals.append(dolphin)
-  animals.append(donkey)
-  animals.append(horse)
-  animals.append(monkey)
-  animals.append(pig)
-  animals.append(seal)
-  animals.append(whale)
-
-  return animals
 
 ################################################################################
 # Main Game Script
@@ -245,21 +255,8 @@ helpMessage = 'A two player game of tic tac toe where players win over squares\
 showInformation(welcomeMessage)
 showInformation(helpMessage)
 
-# create players
-player1 = Player(1)
-player2 = Player(2)
-player1.setName()
-player2.setName()
-player1.setShape('circle')
-player2.setShape('x')
-showInformation('Welcome %s and %s! Lets begin the game' % (player1.getName(),\
- player2.getName()))
-
-# create animal objects
-animalList = makeAnimals()
-
 # assemble tic tac toe board
-board = ticTacToeBoard(animalList)
+board = ticTacToeBoard()
 
 ################################################################################
 # animal image attributions
