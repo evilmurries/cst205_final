@@ -143,8 +143,8 @@ class ticTacToeBoard(JFrame):
     self.gameLoop()
 
   # This method handles what happens when a button is pressed
-  def clickHere(self, event):
-    showInformation('clicked')
+  def clickHere(self, button):
+    showInformation('clicked %d' % button)
 
   # This method closes the window when clicked to
   def closeWindow(self, event):
@@ -263,7 +263,7 @@ class ticTacToeBoard(JFrame):
     while isGameWon is False:
       showInformation('%s, select a tile' % playerTurn.getName())
 
-
+      # need to figure out how to wait until any button is pressed
 
       playerTurn = self.changePlayerTurn(playerTurn)
     return
