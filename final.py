@@ -153,9 +153,6 @@ class ticTacToeBoard(JFrame):
 
     self.setVisible(True)
 
-    showInformation('%s: It is your turn' % self.playerTurn.getName())
-
-    #self.gameLoop()
 
   # This method handles what happens when a button is pressed
   # Used this source to determine the name of the event
@@ -166,10 +163,11 @@ class ticTacToeBoard(JFrame):
 		
     #Test to play sound
     # select random animal
-    self.wonAnimal = True
-    while wonAnimal:
+    loopFlag = True
+    while loopFlag == True:
       randomAnimal = random.randint(0, 13)
-      self.wonAnimal = self.animals[randomAnimal].isWon()
+      if self.animals[randomAnimal].isWon() == False:
+        loopFlag = False
     
     # play sound
     showInformation('Press Enter When You Are Ready To Hear Animal Sound')
