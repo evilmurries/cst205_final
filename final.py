@@ -66,7 +66,7 @@ class Animal:
     self.name = name
     self.sound = makeSound(sound)
     self.picture = makePicture(picture)
-    self.wasWon = False
+    self.isUsed = False
 
   # This method returns the name for the animal object
   def getName(self):
@@ -89,12 +89,13 @@ class Animal:
     return self.picture
 
   # Returns the won status of the animal object
-  def wasWon(self):
-    self.wasWon = True
+  def isUsed(self, status):
+    self.isUsed = status
+    return
   
   # Returns False if the animal object has not been used in the game yet.
   def isWon(self):
-    return self.wasWon
+    return self.isUsed
 
   # This method describes the print characteristics of class Player
   def __str__(self):
@@ -153,6 +154,7 @@ class ticTacToeBoard(JFrame):
 
     self.setVisible(True)
 
+    showInformation('%s: It is your turn' % self.playerTurn.getName())
 
   # This method handles what happens when a button is pressed
   # Used this source to determine the name of the event
@@ -164,27 +166,29 @@ class ticTacToeBoard(JFrame):
     #Test to play sound
     # select random animal
     loopFlag = True
+    self.randomAnimal = 0
     while loopFlag == True:
-      randomAnimal = random.randint(0, 13)
-      if self.animals[randomAnimal].isWon() == False:
+      self.randomAnimal = random.randint(0, 13)
+      if self.animals[self.randomAnimal].isWon() == False:
         loopFlag = False
     
     # play sound
     showInformation('Press Enter When You Are Ready To Hear Animal Sound')
-    play(self.animals[randomAnimal].getSound())
+    play(self.animals[self.randomAnimal].getSound())
     
     
     # handle user guess
     response = requestString('What animal do you think makes this sound?')
     response = response.lower()
+    showInformation('Your guess: %s' % response)
     
     # check user input for correctness
     # if they win the square
-    if response == self.animals[randomAnimal].getName():
-      self.animals[randomAnimal].wasWon()
+    if response == self.animals[self.randomAnimal].getName():
+      #self.animals[self.randomAnimal].isUsed(True)
       showInformation('Correct!')
-      self.answerKey[int(sender.getTitle() - 1)] = playerTurn.getShape()
-      sender.setTitle(self.playerTurn.getShape())
+      sender.setText(self.playerTurn.getShape())
+      self.answerKey[int(sender.getTitle()) - 1] = playerTurn.getShape()
       if self.isGameOver():
         self.endGame(self.playerTurn)
     # if they lose the square
