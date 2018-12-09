@@ -231,6 +231,7 @@ class ticTacToeBoard(JFrame):
       
     
     # close window
+    showInformation('Thank you for playing!')
     self.closeWindow(self)
     return
   
@@ -358,7 +359,6 @@ showInformation(helpMessage)
 
 # assemble tic tac toe board
 board = ticTacToeBoard()
-showInformation('Thank you for playing!')
 
 ################################################################################
 # animal image attributions
