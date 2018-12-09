@@ -89,9 +89,8 @@ class Animal:
     return self.picture
 
   # Returns the won status of the animal object
-  def isUsed(self, status):
-    self.isUsed = status
-    return
+  def animalUsed(self):
+    self.isUsed = True
   
   # Returns False if the animal object has not been used in the game yet.
   def isWon(self):
@@ -99,7 +98,7 @@ class Animal:
 
   # This method describes the print characteristics of class Player
   def __str__(self):
-    print self.name
+    return self.name
 
 
 # One instance of class ticTacToeBoard creates the board for the game of 
@@ -185,13 +184,13 @@ class ticTacToeBoard(JFrame):
     # check user input for correctness
     # if they win the square
     if response == self.animals[self.randomAnimal].getName():
-      #self.animals[self.randomAnimal].isUsed(True)
+      self.animals[self.randomAnimal].animalUsed()
       showInformation('Correct!')
       self.square = int(self.sender.getText())
       self.square -= 1
       self.sender.setText(self.playerTurn.getShape())
       self.answerKey[self.square] = self.playerTurn.getShape()
-      if self.isGameOver() == True:
+      if self.isGameOver():
         self.endGame(self.playerTurn)
     # if they lose the square
     else:
@@ -203,6 +202,7 @@ class ticTacToeBoard(JFrame):
     return
 
   # check to see if anyone won the game
+
   def isGameOver(self):
     
     if self.answerKey[0] == self.answerKey[1] and self.answerKey[1] == self.answerKey[2]:
@@ -224,15 +224,17 @@ class ticTacToeBoard(JFrame):
     else:
       return False
   
+
   # end the game 
   def endGame(self, winningPlayer):
     winningAnimals = winningPlayer.getAnimals()
     showInformation('Congratulations on winning %s! Enjoy your animal parade' % winningPlayer.getName())
-    
-    # animal parade
-    
-      
-    
+		
+
+    #Artify canvas
+    canvas = Artify(canvas)
+    #show canvas
+    show(canvas)
     # close window
     showInformation('Thank you for playing!')
     self.closeWindow(self)
