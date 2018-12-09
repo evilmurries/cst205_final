@@ -163,7 +163,6 @@ class ticTacToeBoard(JFrame):
   # than-self-and-event-on-a-button-press
   def clickHere(self, event):
     sender = event.getSource()
-    showInformation(sender.getText())
 		
     #Test to play sound
     # select random animal
