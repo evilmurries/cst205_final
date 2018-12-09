@@ -109,36 +109,44 @@ class ticTacToeBoard(JFrame):
     # create player and animal objects
     self.createPlayers()
     self.makeAnimals()
+    self.answerKey = ['', '', '',
+                  '', '', '',
+                  '', '', '']
+    self.playerTurn = self.player1
+    self.isGameWon = False
+    self.winner = ''
 
     # Create and add buttons
-    self.btn1 = JButton("Choose", actionPerformed = self.clickHere)
+    self.btn1 = JButton("1", actionPerformed = self.clickHere)
     self.add(self.btn1)
 
-    self.btn2 = JButton("A", actionPerformed = self.clickHere)
+    self.btn2 = JButton("2", actionPerformed = self.clickHere)
     self.add(self.btn2)
 
-    self.btn3 = JButton("Card", actionPerformed = self.clickHere)
+    self.btn3 = JButton("3", actionPerformed = self.clickHere)
     self.add(self.btn3)
 
-    self.btn4 = JButton("Add", actionPerformed = self.clickHere)
+    self.btn4 = JButton("4", actionPerformed = self.clickHere)
     self.add(self.btn4)
 
-    self.btn5 = JButton("Add", actionPerformed = self.clickHere)
+    self.btn5 = JButton("5", actionPerformed = self.clickHere)
     self.add(self.btn5)
 
-    self.btn6 = JButton("Add", actionPerformed = self.clickHere)
+    self.btn6 = JButton("6", actionPerformed = self.clickHere)
     self.add(self.btn6)
 
-    self.btn7 = JButton("Add", actionPerformed = self.clickHere)
+    self.btn7 = JButton("7", actionPerformed = self.clickHere)
     self.add(self.btn7)
 
-    self.btn8 = JButton("Add", actionPerformed = self.clickHere)
+    self.btn8 = JButton("8", actionPerformed = self.clickHere)
     self.add(self.btn8)
 
-    self.btn9 = JButton("Add", actionPerformed = self.clickHere)
+    self.btn9 = JButton("9", actionPerformed = self.clickHere)
     self.add(self.btn9)
 
     self.setVisible(True)
+
+    showInformation('%s: It is your turn' % self.playerTurn.getName())
 
     #self.gameLoop()
 
@@ -149,6 +157,11 @@ class ticTacToeBoard(JFrame):
   def clickHere(self, event):
     sender = event.getSource()
     showInformation(sender.getText())
+
+
+    self.playerTurn = self.changePlayerTurn(self.playerTurn)
+    showInformation('%s: It is your turn' % self.playerTurn.getName())
+    return
 
   # This method closes the window when clicked to
   def closeWindow(self, event):
@@ -254,23 +267,6 @@ class ticTacToeBoard(JFrame):
       return self.player2
     else:
       return self.player1
-
-
-  # This method controls a game of tic tac toe.
-  def gameLoop(self):
-
-    playerTurn = player1
-    isGameWon = False
-    winner = ''
-
-    # keep looping turns until the game is won by someone
-    while isGameWon is False:
-      showInformation('%s, select a tile' % playerTurn.getName())
-
-      # need to figure out how to wait until any button is pressed
-
-      playerTurn = self.changePlayerTurn(playerTurn)
-    return
 
 
 ################################################################################
