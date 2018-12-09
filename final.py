@@ -6,6 +6,7 @@
 from java.awt import Dimension, GridLayout
 from javax.swing import JButton, JFrame, JPanel, BoxLayout, Box
 import os
+import random
 
 
 ###############################################################################
@@ -16,11 +17,10 @@ import os
 class Player:
 
     # Constructor method for Class Player
-    def __init__(self, number, inventory=[], squares=[], name='', shape=''):
+    def __init__(self, number, animals=[], name='', shape=''):
         self.number = number
-        self.inventory = inventory
         self.name = name
-        self.squares = squares
+        self.animals = animals
         self.shape = shape
 
     # This method sets the name of the player
@@ -43,8 +43,11 @@ class Player:
       return self.number
 
     # This method adds a square to the player's won squares
-    def addSquare(self, square):
-        self.squares.append(square)
+    def addAnimal(self, animal):
+        self.squares.append(animal)
+        
+    def getAnimals(self):
+      return self.animals
 
     # This method sets the shape for the player's squares
     def setShape(self, shape):
@@ -63,7 +66,7 @@ class Animal:
     self.name = name
     self.sound = makeSound(sound)
     self.picture = makePicture(picture)
-    self.wasUsed = False
+    self.wasWon = False
 
   # This method returns the name for the animal object
   def getName(self):
@@ -85,9 +88,13 @@ class Animal:
   def getPicture(self):
     return self.picture
 
+  # Returns the won status of the animal object
+  def wasWon(self):
+    self.wasWon = True
+  
   # Returns False if the animal object has not been used in the game yet.
-  def wasUsed(self):
-    return self.wasUsed
+  def isWon(self):
+    return self.wasWon
 
   # This method describes the print characteristics of class Player
   def __str__(self):
@@ -106,7 +113,7 @@ class ticTacToeBoard(JFrame):
     self.setSize(400,400)
     self.setLayout(GridLayout(3,3))
 
-    # create player and animal objects
+    # create variables
     self.createPlayers()
     self.makeAnimals()
     self.answerKey = ['', '', '',
@@ -157,12 +164,76 @@ class ticTacToeBoard(JFrame):
   def clickHere(self, event):
     sender = event.getSource()
     showInformation(sender.getText())
+		
+    #Test to play sound
+    # select random animal
+    self.wonAnimal = True
+    while wonAnimal:
+      randomAnimal = random.randint(0, 13)
+      self.wonAnimal = self.animals[randomAnimal].isWon()
+    
+    # play sound
+    showInformation('Press Enter When You Are Ready To Hear Animal Sound')
+    play(self.animals[randomAnimal].getSound())
+    
+    
+    # handle user guess
+    response = requestString('What animal do you think makes this sound?')
+    response = response.lower()
+    
+    # check user input for correctness
+    # if they win the square
+    if response == self.animals[randomAnimal].getName():
+      self.animals[randomAnimal].wasWon()
+      showInformation('Correct!')
+      self.answerKey[int(sender.getTitle() - 1)] = playerTurn.getShape()
+      sender.setTitle(self.playerTurn.getShape())
+      if self.isGameOver():
+        self.endGame(self.playerTurn)
+    # if they lose the square
+    else:
+      showInformation('Sorry, incorrect guess. Next players turn.')
 
-
+    # set up next round
     self.playerTurn = self.changePlayerTurn(self.playerTurn)
     showInformation('%s: It is your turn' % self.playerTurn.getName())
     return
 
+  # check to see if anyone won the game
+  def isGameOver(self):
+    
+    if self.answerKey[0] == self.anwerkey[1] and self.answerKey[1] == self.answerKey[2]:
+      return True
+    elif self.answerKey[3] == self.anwerkey[4] and self.answerKey[4] == self.answerKey[5]:
+      return True
+    elif self.answerKey[6] == self.anwerkey[7] and self.answerKey[7] == self.answerKey[8]:
+      return True
+    elif self.answerKey[0] == self.anwerkey[3] and self.answerKey[3] == self.answerKey[6]:
+      return True
+    elif self.answerKey[1] == self.anwerkey[4] and self.answerKey[4] == self.answerKey[7]:
+      return True
+    elif self.answerKey[2] == self.anwerkey[5] and self.answerKey[5] == self.answerKey[8]:
+      return True
+    elif self.answerKey[0] == self.anwerkey[4] and self.answerKey[4] == self.answerKey[8]:
+      return True
+    elif self.answerKey[2] == self.anwerkey[4] and self.answerKey[4] == self.answerKey[6]:
+      return True
+    else:
+      return False
+  
+  # end the game 
+  def endGame(self, winningPlayer):
+    winningAnimals = winningPlayer.getAnimals()
+    showInformation('Congratulations on winning %s! Enjoy your animal parade' % winningPlayer.getName())
+    
+    # animal parade
+    
+      
+    
+    # close window
+    self.closeWindow(self)
+    return
+  
   # This method closes the window when clicked to
   def closeWindow(self, event):
     self.dispose()
@@ -173,8 +244,8 @@ class ticTacToeBoard(JFrame):
     self.player2 = Player(2)
     self.player1.setName()
     self.player2.setName()
-    self.player1.setShape('circle')
-    self.player2.setShape('x')
+    self.player1.setShape('O')
+    self.player2.setShape('X')
     showInformation('Welcome %s and %s! Lets begin the game' % \
       (self.player1.getName(), self.player2.getName()))
 
@@ -262,6 +333,7 @@ class ticTacToeBoard(JFrame):
     for animal in self.animals:
       printNow(animal.getName())
 
+  # This method changes which player's turn it is
   def changePlayerTurn(self, currentPlayer):
     if currentPlayer.getNumber() == 1:
       return self.player2
@@ -286,6 +358,7 @@ showInformation(helpMessage)
 
 # assemble tic tac toe board
 board = ticTacToeBoard()
+showInformation('Thank you for playing!')
 
 ################################################################################
 # animal image attributions
