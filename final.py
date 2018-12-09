@@ -117,9 +117,9 @@ class ticTacToeBoard(JFrame):
     # create variables
     self.createPlayers()
     self.makeAnimals()
-    self.answerKey = ['', '', '',
-                  '', '', '',
-                  '', '', '']
+    self.answerKey = ['1', '2', '3',
+                  '4', '5', '6',
+                  '7', '8', '9']
     self.playerTurn = self.player1
     self.isGameWon = False
     self.winner = ''
@@ -161,7 +161,7 @@ class ticTacToeBoard(JFrame):
   # https://stackoverflow.com/questions/8084679/jython-swing-passing-more-
   # than-self-and-event-on-a-button-press
   def clickHere(self, event):
-    sender = event.getSource()
+    self.sender = event.getSource()
 		
     #Test to play sound
     # select random animal
@@ -187,9 +187,11 @@ class ticTacToeBoard(JFrame):
     if response == self.animals[self.randomAnimal].getName():
       #self.animals[self.randomAnimal].isUsed(True)
       showInformation('Correct!')
-      sender.setText(self.playerTurn.getShape())
-      self.answerKey[int(sender.getTitle()) - 1] = playerTurn.getShape()
-      if self.isGameOver():
+      self.square = int(self.sender.getText())
+      self.square -= 1
+      self.sender.setText(self.playerTurn.getShape())
+      self.answerKey[self.square] = self.playerTurn.getShape()
+      if self.isGameOver() == True:
         self.endGame(self.playerTurn)
     # if they lose the square
     else:
@@ -203,21 +205,21 @@ class ticTacToeBoard(JFrame):
   # check to see if anyone won the game
   def isGameOver(self):
     
-    if self.answerKey[0] == self.anwerkey[1] and self.answerKey[1] == self.answerKey[2]:
+    if self.answerKey[0] == self.answerKey[1] and self.answerKey[1] == self.answerKey[2]:
       return True
-    elif self.answerKey[3] == self.anwerkey[4] and self.answerKey[4] == self.answerKey[5]:
+    elif self.answerKey[3] == self.answerKey[4] and self.answerKey[4] == self.answerKey[5]:
       return True
-    elif self.answerKey[6] == self.anwerkey[7] and self.answerKey[7] == self.answerKey[8]:
+    elif self.answerKey[6] == self.answerKey[7] and self.answerKey[7] == self.answerKey[8]:
       return True
-    elif self.answerKey[0] == self.anwerkey[3] and self.answerKey[3] == self.answerKey[6]:
+    elif self.answerKey[0] == self.answerKey[3] and self.answerKey[3] == self.answerKey[6]:
       return True
-    elif self.answerKey[1] == self.anwerkey[4] and self.answerKey[4] == self.answerKey[7]:
+    elif self.answerKey[1] == self.answerKey[4] and self.answerKey[4] == self.answerKey[7]:
       return True
-    elif self.answerKey[2] == self.anwerkey[5] and self.answerKey[5] == self.answerKey[8]:
+    elif self.answerKey[2] == self.answerKey[5] and self.answerKey[5] == self.answerKey[8]:
       return True
-    elif self.answerKey[0] == self.anwerkey[4] and self.answerKey[4] == self.answerKey[8]:
+    elif self.answerKey[0] == self.answerKey[4] and self.answerKey[4] == self.answerKey[8]:
       return True
-    elif self.answerKey[2] == self.anwerkey[4] and self.answerKey[4] == self.answerKey[6]:
+    elif self.answerKey[2] == self.answerKey[4] and self.answerKey[4] == self.answerKey[6]:
       return True
     else:
       return False
