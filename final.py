@@ -224,13 +224,52 @@ class ticTacToeBoard(JFrame):
     else:
       return False
   
-
+#Artify to change final pic for winning player
+  def Artify(self,pic):
+    for p in getPixels(pic):
+     b = getBlue(p)
+     g = getGreen(p)
+     r = getRed(p)
+     # apply Artify
+     r = calculateColor(r)
+     b = calculateColor(b)
+     g = calculateColor(g)
+     color = makeColor(r, g, b)
+     setColor(p, color) 
+    return pic
+  
+  # This function receives a source and target image, then
+  def pyCopy(self,source, target, targetX, targetY):
+    sourceWidth = getWidth( source )
+    sourceHeight = getHeight( source )
+    targetWidth = getWidth( target )
+    targetHeight = getHeight( target )
+    for x in range( 0, sourceWidth ):
+     for y in range( 0, sourceHeight ):
+      pixel = getPixel( source, x, y )
+      color = getColor( pixel )
+      if x + targetX < targetWidth - 1 and y + targetY < targetHeight - 1:      
+        setColor( getPixel( target, x + targetX, y + targetY ), color )
+    return target
+     
   # end the game 
   def endGame(self, winningPlayer):
     winningAnimals = winningPlayer.getAnimals()
     showInformation('Congratulations on winning %s! Enjoy your animal parade' % winningPlayer.getName())
 		
-
+    #animal parade
+    #make empty canvas for winning 3 pics to be shown
+    canvas = makeEmptyPicture(1100, 800)
+    pic = []
+    pic[0] = winningAnimals[0]
+    pic[1] = winningAnimals[1]
+    pic[2] = winningAnimals[2]
+    
+    #Place pics in blank canvas
+    pyCopy(pic[0], canvas, 10, 10)
+    pyCopy(pic[1], canvas, 350, 10)
+    pyCopy(pic[2], canvas, 700, 10)
+    
     #Artify canvas
     canvas = Artify(canvas)
     #show canvas
