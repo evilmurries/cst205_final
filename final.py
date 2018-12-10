@@ -224,6 +224,18 @@ class ticTacToeBoard(JFrame):
       return True
     else:
       return False
+
+  #calculateColor for red,green and blue
+  def calculateColor(self,color):
+    if color < 64:
+      color = 31
+    elif color >63 and color < 128:
+      color = 95  
+    elif color > 127 and color < 192:
+      color = 159
+    else:
+      color = 223
+    return color
   
 #Artify to change final pic for winning player
   def Artify(self, pic):
@@ -232,11 +244,11 @@ class ticTacToeBoard(JFrame):
       g = getGreen(p)
       r = getRed(p)
       # apply Artify
-      r = calculateColor(r)
-      b = calculateColor(b)
-      g = calculateColor(g)
-      color = makeColor(r, g, b)
-      setColor(p, color) 
+      r = self.calculateColor(r)
+      b = self.calculateColor(b)
+      g = self.calculateColor(g)
+      self.color = makeColor(r, g, b)
+      setColor(p, self.color) 
     return pic
   
 
@@ -255,12 +267,13 @@ class ticTacToeBoard(JFrame):
     #self.pic[2] = self.winningAnimals[2]
     
     #Place pics in blank canvas
+    #copyInto(smallPicture, bigPicture, startX, startY):
     self.canvas = copyInto(self.winningAnimals[0].getPicture(), self.canvas, 10, 10)
     self.canvas = copyInto(self.winningAnimals[1].getPicture(), self.canvas, 350, 10)
     self.canvas = copyInto(self.winningAnimals[2].getPicture(), self.canvas, 700, 10)
     
     #Artify canvas
-   # self.canvas = self.Artify(self.canvas)
+    self.canvas = self.Artify(self.canvas)
     #show canvas
     show(self.canvas)
     # close window
