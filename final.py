@@ -274,7 +274,7 @@ class ticTacToeBoard(JFrame):
 		
     #animal parade
     #make empty canvas for winning 3 pics to be shown
-    self.canvas = makeEmptyPicture(1100, 450)
+    self.canvas = makeEmptyPicture(1100, 500)
     
     #Place pics in blank canvas
     #copyInto(smallPicture, bigPicture, startX, startY):
@@ -287,7 +287,7 @@ class ticTacToeBoard(JFrame):
     #show canvas
     show(self.canvas)
     play(clapping)
-    # close window
+    #close window
     showInformation('Thank you for playing!')
     self.closeWindow(self)
   
@@ -335,7 +335,7 @@ class ticTacToeBoard(JFrame):
 
     soundPath = os.path.join(directory, 'animal sounds', 'crickets.wav')
     picPath = os.path.join(directory, 'animal pics', 'crickets.jpg')
-    cricket = Animal('cricket', soundPath, picPath)
+    cricket = Animal('crickets', soundPath, picPath)
 
     soundPath = os.path.join(directory, 'animal sounds', 'dog_bark2.wav')
     picPath = os.path.join(directory, 'animal pics', 'dog.jpg')
