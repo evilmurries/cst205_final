@@ -44,7 +44,7 @@ class Player:
 
     # This method adds a square to the player's won squares
     def addAnimal(self, animal):
-        self.squares.append(animal)
+        self.animals.append(animal)
         
     def getAnimals(self):
       return self.animals
@@ -185,6 +185,7 @@ class ticTacToeBoard(JFrame):
     # if they win the square
     if response == self.animals[self.randomAnimal].getName():
       self.animals[self.randomAnimal].animalUsed()
+      self.playerTurn.addAnimal(self.animals[self.randomAnimal])
       showInformation('Correct!')
       self.square = int(self.sender.getText())
       self.square -= 1
@@ -225,59 +226,59 @@ class ticTacToeBoard(JFrame):
       return False
   
 #Artify to change final pic for winning player
-  def Artify(self,pic):
+  def Artify(self, pic):
     for p in getPixels(pic):
-     b = getBlue(p)
-     g = getGreen(p)
-     r = getRed(p)
-     # apply Artify
-     r = calculateColor(r)
-     b = calculateColor(b)
-     g = calculateColor(g)
-     color = makeColor(r, g, b)
-     setColor(p, color) 
+      b = getBlue(p)
+      g = getGreen(p)
+      r = getRed(p)
+      # apply Artify
+      r = calculateColor(r)
+      b = calculateColor(b)
+      g = calculateColor(g)
+      color = makeColor(r, g, b)
+      setColor(p, color) 
     return pic
   
   # This function receives a source and target image, then
-  def pyCopy(self,source, target, targetX, targetY):
+  def pyCopy(self, source, target, targetX, targetY):
     sourceWidth = getWidth( source )
     sourceHeight = getHeight( source )
     targetWidth = getWidth( target )
     targetHeight = getHeight( target )
     for x in range( 0, sourceWidth ):
-     for y in range( 0, sourceHeight ):
-      pixel = getPixel( source, x, y )
-      color = getColor( pixel )
+      for y in range( 0, sourceHeight ):
+        pixel = getPixel( source, x, y )
+        color = getColor( pixel )
       if x + targetX < targetWidth - 1 and y + targetY < targetHeight - 1:      
         setColor( getPixel( target, x + targetX, y + targetY ), color )
     return target
      
   # end the game 
   def endGame(self, winningPlayer):
-    winningAnimals = winningPlayer.getAnimals()
+    self.winningAnimals = winningPlayer.getAnimals()
     showInformation('Congratulations on winning %s! Enjoy your animal parade' % winningPlayer.getName())
 		
     #animal parade
     #make empty canvas for winning 3 pics to be shown
-    canvas = makeEmptyPicture(1100, 800)
-    pic = []
-    pic[0] = winningAnimals[0]
-    pic[1] = winningAnimals[1]
-    pic[2] = winningAnimals[2]
+    self.canvas = makeEmptyPicture(1100, 800)
+    #self.canvas = self.winningAnimals[0].
+    #self.pic = []
+    #self.pic[0] = self.winningAnimals[0]
+    #self.pic[1] = self.winningAnimals[1]
+    #self.pic[2] = self.winningAnimals[2]
     
     #Place pics in blank canvas
-    pyCopy(pic[0], canvas, 10, 10)
-    pyCopy(pic[1], canvas, 350, 10)
-    pyCopy(pic[2], canvas, 700, 10)
+    self.canvas = self.pyCopy(self.winningAnimals[0].getPicture(), self.canvas, 10, 10)
+    self.canvas = self.pyCopy(self.winningAnimals[1].getPicture(), self.canvas, 350, 10)
+    self.canvas = self.pyCopy(self.winningAnimals[2].getPicture(), self.canvas, 700, 10)
     
     #Artify canvas
-    canvas = Artify(canvas)
+   # self.canvas = self.Artify(self.canvas)
     #show canvas
-    show(canvas)
+    show(self.canvas)
     # close window
     showInformation('Thank you for playing!')
     self.closeWindow(self)
-    return
   
   # This method closes the window when clicked to
   def closeWindow(self, event):
