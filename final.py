@@ -239,20 +239,7 @@ class ticTacToeBoard(JFrame):
       setColor(p, color) 
     return pic
   
-  # This function receives a source and target image, then
-  def pyCopy(self, source, target, targetX, targetY):
-    sourceWidth = getWidth( source )
-    sourceHeight = getHeight( source )
-    targetWidth = getWidth( target )
-    targetHeight = getHeight( target )
-    for x in range( 0, sourceWidth ):
-      for y in range( 0, sourceHeight ):
-        pixel = getPixel( source, x, y )
-        color = getColor( pixel )
-      if x + targetX < targetWidth - 1 and y + targetY < targetHeight - 1:      
-        setColor( getPixel( target, x + targetX, y + targetY ), color )
-    return target
-     
+
   # end the game 
   def endGame(self, winningPlayer):
     self.winningAnimals = winningPlayer.getAnimals()
@@ -268,9 +255,9 @@ class ticTacToeBoard(JFrame):
     #self.pic[2] = self.winningAnimals[2]
     
     #Place pics in blank canvas
-    self.canvas = self.pyCopy(self.winningAnimals[0].getPicture(), self.canvas, 10, 10)
-    self.canvas = self.pyCopy(self.winningAnimals[1].getPicture(), self.canvas, 350, 10)
-    self.canvas = self.pyCopy(self.winningAnimals[2].getPicture(), self.canvas, 700, 10)
+    self.canvas = copyInto(self.winningAnimals[0].getPicture(), self.canvas, 10, 10)
+    self.canvas = copyInto(self.winningAnimals[1].getPicture(), self.canvas, 350, 10)
+    self.canvas = copyInto(self.winningAnimals[2].getPicture(), self.canvas, 700, 10)
     
     #Artify canvas
    # self.canvas = self.Artify(self.canvas)
