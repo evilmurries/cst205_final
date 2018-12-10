@@ -197,10 +197,22 @@ class ticTacToeBoard(JFrame):
     else:
       showInformation('Sorry, incorrect guess. Next players turn.')
 
-    # set up next round
-    self.playerTurn = self.changePlayerTurn(self.playerTurn)
-    showInformation('%s: It is your turn' % self.playerTurn.getName())
+    # End game if cats game
+    if self.catsGame():
+      showInformation('Cat\'s Game! No one wins this round.')
+      self.closeWindow()
+    elif self.isGameOver() == False:
+      self.playerTurn = self.changePlayerTurn(self.playerTurn)
+      showInformation('%s: It is your turn' % self.playerTurn.getName())
     return
+
+  # Determines if the game is a cat's game 
+  def catsGame(self):
+    flag = True
+    for item in self.answerKey:
+      if self.answerKey[item] is not 'X' and self.answerKey[item] is not 'O':
+        flag = False
+    return Flag
 
   # check to see if anyone won the game
 
@@ -254,8 +266,11 @@ class ticTacToeBoard(JFrame):
 
   # end the game 
   def endGame(self, winningPlayer):
+    directory = os.path.dirname(__file__)
+    clapping = makeSound(os.path.join(directory, 'applause.wav'))
     self.winningAnimals = winningPlayer.getAnimals()
-    showInformation('Congratulations on winning %s! Enjoy your animal parade' % winningPlayer.getName())
+    showInformation('Congratulations on winning %s! Enjoy your animal parade' \
+      % winningPlayer.getName())
 		
     #animal parade
     #make empty canvas for winning 3 pics to be shown
@@ -271,6 +286,7 @@ class ticTacToeBoard(JFrame):
     self.canvas = self.Artify(self.canvas)
     #show canvas
     show(self.canvas)
+    play(clapping)
     # close window
     showInformation('Thank you for playing!')
     self.closeWindow(self)
