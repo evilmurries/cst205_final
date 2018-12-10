@@ -263,6 +263,7 @@ class ticTacToeBoard(JFrame):
   # end the game 
   def endGame(self, winningPlayer):
     directory = os.path.dirname(__file__)
+    winning = makePicture(os.path.join(directory, 'WinningMessage.jpg'))
     clapping = makeSound(os.path.join(directory, 'applause.wav'))
     self.winningAnimals = winningPlayer.getAnimals()
     showInformation('Congratulations on winning %s! Enjoy your animal parade' \
@@ -280,6 +281,7 @@ class ticTacToeBoard(JFrame):
     
     #Artify canvas
     self.canvas = self.Artify(self.canvas)
+    self.canvas = copyInto(winning, self.canvas, 200, 300)
     #show canvas
     show(self.canvas)
     play(clapping)
