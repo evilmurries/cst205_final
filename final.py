@@ -259,12 +259,7 @@ class ticTacToeBoard(JFrame):
 		
     #animal parade
     #make empty canvas for winning 3 pics to be shown
-    self.canvas = makeEmptyPicture(1100, 800)
-    #self.canvas = self.winningAnimals[0].
-    #self.pic = []
-    #self.pic[0] = self.winningAnimals[0]
-    #self.pic[1] = self.winningAnimals[1]
-    #self.pic[2] = self.winningAnimals[2]
+    self.canvas = makeEmptyPicture(1100, 450)
     
     #Place pics in blank canvas
     #copyInto(smallPicture, bigPicture, startX, startY):
