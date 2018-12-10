@@ -122,6 +122,7 @@ class ticTacToeBoard(JFrame):
     self.playerTurn = self.player1
     self.isGameWon = False
     self.winner = ''
+    self.correctGuesses = 0
 
     # Create and add buttons
     self.btn1 = JButton("1", actionPerformed = self.clickHere)
@@ -183,7 +184,9 @@ class ticTacToeBoard(JFrame):
     
     # check user input for correctness
     # if they win the square
+
     if response == self.animals[self.randomAnimal].getName():
+      self.correctGuesses += 1
       self.animals[self.randomAnimal].animalUsed()
       self.playerTurn.addAnimal(self.animals[self.randomAnimal])
       showInformation('Correct!')
@@ -198,21 +201,14 @@ class ticTacToeBoard(JFrame):
       showInformation('Sorry, incorrect guess. Next players turn.')
 
     # End game if cats game
-    if self.catsGame():
-      showInformation('Cat\'s Game! No one wins this round.')
+    if self.correctGuesses == 9:
+      showInformation('Cat\'s game. No one wins!')
       self.closeWindow()
-    elif self.isGameOver() == False:
+    if self.isGameOver() == False:
       self.playerTurn = self.changePlayerTurn(self.playerTurn)
       showInformation('%s: It is your turn' % self.playerTurn.getName())
     return
 
-  # Determines if the game is a cat's game 
-  def catsGame(self):
-    flag = True
-    for item in self.answerKey:
-      if self.answerKey[item] is not 'X' and self.answerKey[item] is not 'O':
-        flag = False
-    return Flag
 
   # check to see if anyone won the game
 
