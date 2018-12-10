@@ -282,7 +282,7 @@ class ticTacToeBoard(JFrame):
     
     #Artify canvas
     self.canvas = self.Artify(self.canvas)
-    self.canvas = copyInto(winning, self.canvas, 200, 300)
+    self.canvas = copyInto(winning, self.canvas, 0, 470)
     #show canvas
     show(self.canvas)
     play(clapping)
