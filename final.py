@@ -263,7 +263,7 @@ class ticTacToeBoard(JFrame):
   # end the game 
   def endGame(self, winningPlayer):
     directory = os.path.dirname(__file__)
-    winning = makePicture(os.path.join(directory, 'WinningMessage.jpg'))
+    winning = makePicture(os.path.join(directory, 'Youwin.jpg'))
     clapping = makeSound(os.path.join(directory, 'applause.wav'))
     self.winningAnimals = winningPlayer.getAnimals()
     showInformation('Congratulations on winning %s! Enjoy your animal parade' \
